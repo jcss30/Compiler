@@ -1,0 +1,233 @@
+ReservedWord			play	lineNumber:1
+NewLine				lineNumber:2
+NewLine				lineNumber:3
+Keyword			num	lineNumber:3
+Identifier			age	lineNumber:3
+ArEq			=	lineNumber:3
+Number			90	lineNumber:3
+ParameterSep			,	lineNumber:3
+Identifier			tanda	lineNumber:3
+ArEq			=	lineNumber:3
+Number			19	lineNumber:3
+EOS			;	lineNumber:3
+NewLine				lineNumber:4
+Keyword			dec	lineNumber:4
+Identifier			weight	lineNumber:4
+ArEq			=	lineNumber:4
+Decimal			67.9	lineNumber:4
+EOS			;	lineNumber:4
+NewLine				lineNumber:5
+Keyword			dec	lineNumber:5
+Identifier			weight2	lineNumber:5
+ArEq			=	lineNumber:5
+Number			70	lineNumber:5
+EOS			;	lineNumber:5
+NewLine				lineNumber:6
+Keyword			let	lineNumber:6
+Identifier			middleInitial	lineNumber:6
+ArEq			=	lineNumber:6
+Word			r	lineNumber:6
+EOS			;	lineNumber:6
+NewLine				lineNumber:7
+Keyword			word	lineNumber:7
+Identifier			name	lineNumber:7
+ArEq			=	lineNumber:7
+Word			sabrina	lineNumber:7
+EOS			;	lineNumber:7
+NewLine				lineNumber:8
+Keyword			tralse	lineNumber:8
+Identifier			isReady	lineNumber:8
+ArEq			=	lineNumber:8
+Tralse			true	lineNumber:8
+EOS			;	lineNumber:8
+NewLine				lineNumber:9
+NewLine				lineNumber:10
+Keyword			dec	lineNumber:10
+Identifier			tester	lineNumber:10
+EOS			;	lineNumber:10
+NewLine				lineNumber:11
+NewLine				lineNumber:12
+Keyword			if	lineNumber:12
+LeftBracket			[	lineNumber:12
+Identifier			age	lineNumber:12
+NotEq			!=	lineNumber:12
+Number			10	lineNumber:12
+RightBracket			]	lineNumber:12
+LeftBrace			{	lineNumber:12
+NewLine				lineNumber:13
+Identifier			tester	lineNumber:13
+ArEq			=	lineNumber:13
+Identifier			weight	lineNumber:13
+Exponent			^	lineNumber:13
+Identifier			age	lineNumber:13
+EOS			;	lineNumber:13
+NewLine				lineNumber:14
+RightBrace			}	lineNumber:14
+Keyword			elsif	lineNumber:14
+LeftBracket			[	lineNumber:14
+Identifier			age	lineNumber:14
+isEqTo			==	lineNumber:14
+Decimal			20.50	lineNumber:14
+RightBracket			]	lineNumber:14
+LeftBrace			{	lineNumber:14
+NewLine				lineNumber:15
+Identifier			tester	lineNumber:15
+ArEq			=	lineNumber:15
+Identifier			weight	lineNumber:15
+Division			/	lineNumber:15
+Identifier			age	lineNumber:15
+EOS			;	lineNumber:15
+NewLine				lineNumber:16
+RightBrace			}	lineNumber:16
+Keyword			elsif	lineNumber:16
+LeftBracket			[	lineNumber:16
+Identifier			age	lineNumber:16
+LessThan			<	lineNumber:16
+Number			90	lineNumber:16
+RightBracket			]	lineNumber:16
+LeftBrace			{	lineNumber:16
+NewLine				lineNumber:17
+Identifier			tester	lineNumber:17
+ArEq			=	lineNumber:17
+Identifier			weight	lineNumber:17
+Subtraction			-	lineNumber:17
+Identifier			age	lineNumber:17
+EOS			;	lineNumber:17
+NewLine				lineNumber:18
+RightBrace			}	lineNumber:18
+NewLine				lineNumber:19
+Keyword			elsif	lineNumber:19
+LeftBracket			[	lineNumber:19
+Identifier			age	lineNumber:19
+LessThanEq			<=	lineNumber:19
+Number			20	lineNumber:19
+Identifier			OR	lineNumber:19
+Identifier			weight	lineNumber:19
+GreaterThanEq			>=	lineNumber:19
+Number			50	lineNumber:19
+RightBracket			]	lineNumber:19
+LeftBrace			{	lineNumber:19
+NewLine				lineNumber:20
+Identifier			tester	lineNumber:20
+ArEq			=	lineNumber:20
+OpenParenth			(	lineNumber:20
+Identifier			weight	lineNumber:20
+Multiply			*	lineNumber:20
+Identifier			age	lineNumber:20
+CloseParenth			)	lineNumber:20
+Remainder			%	lineNumber:20
+Number			10	lineNumber:20
+EOS			;	lineNumber:20
+NewLine				lineNumber:21
+RightBrace			}	lineNumber:21
+NewLine				lineNumber:22
+Keyword			elsif	lineNumber:22
+LeftBracket			[	lineNumber:22
+Identifier			age	lineNumber:22
+LessThanEq			<=	lineNumber:22
+Number			100	lineNumber:22
+Identifier			AND	lineNumber:22
+Identifier			weight	lineNumber:22
+GreaterThanEq			>=	lineNumber:22
+Identifier			age	lineNumber:22
+RightBracket			]	lineNumber:22
+LeftBrace			{	lineNumber:22
+NewLine				lineNumber:23
+Identifier			tester	lineNumber:23
+ArEq			=	lineNumber:23
+OpenParenth			(	lineNumber:23
+Identifier			weight	lineNumber:23
+Multiply			*	lineNumber:23
+Identifier			age	lineNumber:23
+CloseParenth			)	lineNumber:23
+Addition			+	lineNumber:23
+Number			5	lineNumber:23
+EOS			;	lineNumber:23
+NewLine				lineNumber:24
+RightBrace			}	lineNumber:24
+NewLine				lineNumber:25
+Keyword			else	lineNumber:25
+LeftBrace			{	lineNumber:25
+NewLine				lineNumber:26
+Identifier			tester	lineNumber:26
+ArEq			=	lineNumber:26
+Identifier			weight	lineNumber:26
+Multiply			*	lineNumber:26
+Identifier			age	lineNumber:26
+EOS			;	lineNumber:26
+NewLine				lineNumber:27
+RightBrace			}	lineNumber:27
+NewLine				lineNumber:28
+NewLine				lineNumber:29
+Keyword			if	lineNumber:29
+LeftBracket			[	lineNumber:29
+Identifier			NOT	lineNumber:29
+Identifier			isReady	lineNumber:29
+RightBracket			]	lineNumber:29
+LeftBrace			{	lineNumber:29
+NewLine				lineNumber:30
+Identifier			lala	lineNumber:30
+ArEq			=	lineNumber:30
+Word			Hello	lineNumber:30
+EOS			;	lineNumber:30
+NewLine				lineNumber:31
+RightBrace			}	lineNumber:31
+NewLine				lineNumber:32
+NewLine				lineNumber:33
+Keyword			noisy	lineNumber:33
+Identifier			asd	lineNumber:33
+EOS			;	lineNumber:33
+NewLine				lineNumber:34
+Keyword			noisy	lineNumber:34
+Word			Hello World	lineNumber:34
+EOS			;	lineNumber:34
+NewLine				lineNumber:35
+Keyword			noisy	lineNumber:35
+Identifier			name	lineNumber:35
+Concat			&	lineNumber:35
+Word			hi	lineNumber:35
+EOS			;	lineNumber:35
+NewLine				lineNumber:36
+Keyword			noisy	lineNumber:36
+Identifier			middleInitial	lineNumber:36
+EOS			;	lineNumber:36
+NewLine				lineNumber:37
+Keyword			noisy	lineNumber:37
+Word			Input name:	lineNumber:37
+EOS			;	lineNumber:37
+NewLine				lineNumber:38
+Keyword			in	lineNumber:38
+In			$	lineNumber:38
+Identifier			age	lineNumber:38
+EOS			;	lineNumber:38
+NewLine				lineNumber:39
+NewLine				lineNumber:40
+Keyword			spin	lineNumber:40
+NoiseWord			this	lineNumber:40
+LeftBrace			{	lineNumber:40
+NewLine				lineNumber:41
+Keyword			noisy	lineNumber:41
+Word			Hello World	lineNumber:41
+EOS			;	lineNumber:41
+NewLine				lineNumber:42
+Identifier			weight	lineNumber:42
+ArEq			=	lineNumber:42
+Identifier			weight	lineNumber:42
+Addition			+	lineNumber:42
+Number			1	lineNumber:42
+EOS			;	lineNumber:42
+NewLine				lineNumber:43
+RightBrace			}	lineNumber:43
+NewLine				lineNumber:44
+Keyword			until	lineNumber:44
+LeftBrace			{	lineNumber:44
+NewLine				lineNumber:45
+Identifier			weight	lineNumber:45
+GreaterThan			>	lineNumber:45
+Number			90	lineNumber:45
+EOS			;	lineNumber:45
+NewLine				lineNumber:46
+RightBrace			}	lineNumber:46
+NewLine				lineNumber:47
+NewLine				lineNumber:48
+ReservedWord			sleep	lineNumber:48

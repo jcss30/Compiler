@@ -1,0 +1,49 @@
+play
+
+num age = 90;
+dec weight = 67.9;
+dec weight2= 70;
+let middleInitial = "r";
+word name = "sabrina";
+tralse isReady=true;
+P.L.A.Y Sample Comment
+dec tester ++;
+
+if[age!=10]{
+tester = weight ^ age;
+}
+elsif [age==20.50]{
+tester=weight/age;
+}
+elsif [age<90]{
+tester=weight-age;
+}	
+elsif [age<=20 OR weight>=50]{
+tester=(weight*age) % 10;
+}
+elsif [age<=100 AND weight>=age]{
+tester=(weight*age) + 5;
+}
+else{
+tester=weight*age;
+}
+
+if[NOT isReady]{
+	lala="Hello";
+}	
+
+noisy "asd";
+noisy "Hello World";
+noisy name & "hi";
+noisy middleInitial;
+noisy "Input name:";
+in $age;
+
+spin {
+	noisy "Hello World";
+}	
+until{
+	weight > 90;
+}
+
+sleep
