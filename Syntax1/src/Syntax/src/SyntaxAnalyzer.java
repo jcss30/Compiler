@@ -632,7 +632,6 @@ public class SyntaxAnalyzer {
 
                         currentToken = lex.nextToken();
 
-
                         if (currentToken.getTokenClass() == Token.RCURLYBRACE) {
                             //System.out.println("UNEXPECTED END OF FILE");
                             break;
@@ -771,31 +770,6 @@ public class SyntaxAnalyzer {
 
         parent.addChild(exprStmtNode);
 
-        if (currentToken.getTokenClass() == Token.LSQUAREBRACKET) {
-            infix += " (";
-            exprStmtNode.addChild(currentToken);
-            //exprStmtNode.add(new DefaultMutableTreeNode(currentToken.getLexeme()));
-
-            currentToken = lex.nextToken();
-
-            exprStmt(exprStmtNode);
-
-            if (currentToken.getTokenClass() == Token.RSQUAREBRACKET) {
-                infix += " )";
-
-                exprStmtNode.addChild(currentToken);
-
-                //exprStmtNode.add(new DefaultMutableTreeNode(currentToken.getLexeme()));
-
-                currentToken = lex.nextToken();
-
-            } else {
-
-                error("(", currentToken, exprStmtNode);
-
-            }
-        }
-
         operand(exprStmtNode);
         while (currentToken.getTokenClass() == Token.ADD | currentToken.getTokenClass() == Token.SUBTRACT) {
             if (currentToken.getTokenClass() == Token.ADD) infix += " +";
@@ -881,7 +855,31 @@ public class SyntaxAnalyzer {
         } else if (currentToken.getTokenClass() == Token.STRING) {
             string_stmt(factorNode, infix);
             //currentToken = lex.nextToken();
-        } else {
+        }else if (currentToken.getTokenClass() == Token.LPAR) {
+            infix += " (";
+            factorNode.addChild(currentToken);
+            //exprStmtNode.add(new DefaultMutableTreeNode(currentToken.getLexeme()));
+
+            currentToken = lex.nextToken();
+
+            exprStmt(factorNode);
+
+            if (currentToken.getTokenClass() == Token.RPAR) {
+                infix += " )";
+
+                factorNode.addChild(currentToken);
+
+                //exprStmtNode.add(new DefaultMutableTreeNode(currentToken.getLexeme()));
+
+                currentToken = lex.nextToken();
+
+            } else {
+
+                error("(", currentToken, factorNode);
+
+            }
+        }
+        else {
             error("IDENTIFIER", currentToken, parent);
             System.out.println("NUMBER OR IDENTIFIER EXPECTED AT LINE:" + currentToken.getLineNumber());
         }
