@@ -40,6 +40,8 @@ public class LexicalAnalyzer {
         return false;
     }
 
+    //Checks if character is an alphabet
+
     public boolean isAlpha(char c) {
         if (c >= 'a' && c <= 'z') {
             return true;
@@ -83,19 +85,23 @@ public class LexicalAnalyzer {
                 // Controller
                 case "LA":
                     switch (currentChar) {
+
                         case '\n':
                             line++;
-                            currentChar = read();
-                            return new Token("NewLine","",line,Token.NL);
-                            
+
                         case ' ': // Whitespaces
+
                         case '\r':
                         case '\t':
                             currentChar = read();
-                            
-                            continue;
 
-                        //EOS
+                            continue;
+                        case '"':
+                            currentChar = read();
+                            currentState = "string";
+                            alphaBuffer = "";
+                            continue;
+                            //EOS
                         case ';':
                             currentChar = read();
                             return new Token("EOS", ";", line, Token.EOS);
@@ -162,6 +168,7 @@ public class LexicalAnalyzer {
                             currentState = "==";
                             continue;
 
+
                         case '!':
                             currentChar = read();
                             currentState = "!=";
@@ -177,12 +184,6 @@ public class LexicalAnalyzer {
                             currentState = "<=";
                             continue;
 
-                        case '"':
-                            currentChar = read();
-                            currentState = "string";
-                            alphaBuffer = "";
-                            continue;
-
                         case '#':
                             currentChar = read();
                             currentState = "##";
@@ -194,8 +195,9 @@ public class LexicalAnalyzer {
                             continue;
                     }
 
-                // Integer - Start
+                    // Integer - Start
                 case "P1":
+
                     if (isNumeric(currentChar)) {
                         numBuffer = 0; // Reset the buffer.
                         numBuffer += (currentChar - '0');
@@ -205,11 +207,11 @@ public class LexicalAnalyzer {
                         currentChar = read();
 
                     } else {
-                        currentState = "P3"; //doesnot start with number or symbolTable go to case 5
+                        currentState = "P3"; //doesnot start with number or symbol go to case 5
                     }
                     continue;
 
-                // Integer - Body
+                    // Integer - Body
                 case "P2":
                     if (isNumeric(currentChar)) {
                         numBuffer *= 10;
@@ -229,7 +231,7 @@ public class LexicalAnalyzer {
 
                     continue;
 
-                //decimal-start	
+                    //decimal-start
                 case "P4":
                     if (isNumeric(currentChar)) {
                         decBuffer = 0;
@@ -241,7 +243,7 @@ public class LexicalAnalyzer {
                         return new Token("ERROR", "Invalid input: " + numBuffer + ".", line, Token.ERROR);
                     }
                     continue;
-                //decimal body
+                    //decimal body
                 case "P5":
                     if (isNumeric(currentChar)) {
                         decBuffer *= 10;
@@ -253,7 +255,7 @@ public class LexicalAnalyzer {
                     }
                     continue;
 
-                //identifier -start
+                    //identifier -start
                 case "P3":
 
                     if (isAlpha(currentChar) || currentChar == '_') {
@@ -280,7 +282,7 @@ public class LexicalAnalyzer {
                                 }
 
                             }
-                        } //sleep, stop, spin 
+                        } //sleep, stop, spin
                         else if (currentChar == 's') {
                             alphaBuffer += currentChar;
                             currentChar = read(); //s
@@ -436,16 +438,49 @@ public class LexicalAnalyzer {
                                     currentChar = read(); //num
                                     return new Token("Keyword", alphaBuffer, line, Token.NUM);
                                 }
-                            } else if (currentChar == 'o') {
+                            }
+                        }
+                        //NOT
+                        else if(currentChar == 'N'){
+                            alphaBuffer += currentChar;
+                            currentChar = read(); //N
+                            if (currentChar == 'O') {
                                 alphaBuffer += currentChar;
-                                currentChar = read(); //no
-                                if (currentChar == 't') {
+                                currentChar = read(); //NO
+                                if (currentChar == 'T') {
                                     alphaBuffer += currentChar;
-                                    currentChar = read(); //not
-                                    return new Token("Keyword", alphaBuffer, line, Token.NOT);
+                                    currentChar = read(); //NOT
+                                    return new Token("Logical", alphaBuffer, line, Token.NOT);
                                 }
                             }
-                        } //fun, false
+                        }
+                        //AND
+                        else if(currentChar == 'A'){
+                            alphaBuffer += currentChar;
+                            currentChar = read(); //A
+                            if (currentChar == 'N') {
+                                alphaBuffer += currentChar;
+                                currentChar = read(); //AN
+                                if (currentChar == 'D') {
+                                    alphaBuffer += currentChar;
+                                    currentChar = read(); //AND
+                                    return new Token("Logical", alphaBuffer, line, Token.AND);
+                                }
+                            }
+                        }
+                        //OR
+                        else if(currentChar == 'O'){
+                            alphaBuffer += currentChar;
+                            currentChar = read(); //O
+                            if (currentChar == 'R') {
+                                alphaBuffer += currentChar;
+                                currentChar = read(); //OR
+
+                                return new Token("Logical", alphaBuffer, line, Token.OR);
+
+                            }
+                        }
+                        //fun, false
                         else if (currentChar == 'f') {
                             alphaBuffer += currentChar;
                             currentChar = read(); //f
@@ -569,74 +604,55 @@ public class LexicalAnalyzer {
                                 }
                             }
 
-                        } else if (currentChar == 'o') {
-                            alphaBuffer += currentChar;
-                            currentChar = read(); //o
-                            if (currentChar == 'r') {
-                                alphaBuffer += currentChar;
-                                currentChar = read(); //r
-                                return new Token("NoiseWord", "" + alphaBuffer, line, Token.LOGICAL);
-                            }
-                        } else if (currentChar == 'a') {
-                            alphaBuffer += currentChar;
-                            currentChar = read(); //a
-                            if (currentChar == 'n') {
-                                alphaBuffer += currentChar;
-                                currentChar = read(); //an
-                                if (currentChar == 'd') {
-                                    alphaBuffer += currentChar;
-                                    currentChar = read(); //and
-                                    return new Token("LogicalOp", "" + alphaBuffer, line, Token.LOGICAL);
-                                }
-                            }
                         }
-                           
+
                         currentState = "P6";
                         continue;
                     } else {
 
                         currentChar = read();
-                        return new Token("ERROR", "Invalid input:" + alphaBuffer, line, Token.ERROR);
-                    }
-
-                //identifier - Body
-                case "P6":
-                    if ((isAlpha(currentChar) || isNumeric(currentChar) || currentChar == '_')) {
-
-                        alphaBuffer += currentChar;
-                        currentChar = read();
-                        
-                    }
-                    else{
-                         return new Token("Identifier", "" + alphaBuffer, line, Token.IDENTIFIER);
-                    }
-                continue;
-
-                case "++":
-                    if (currentChar == '+') {
-                        currentChar = read();
-                        return new Token("Increment", "++", line, Token.INCREMENT);
-                    } else {
-                        return new Token("Add", "+", line, Token.ADD);
-                    }
-
-                case "--":
-                    if (currentChar == '-') {
-                        currentChar = read();
-                        return new Token("Decrement", "--", line, Token.DECREMENT);
-                    } else {
-                        return new Token("Subtract", "-", line, Token.SUBTRACT);
+                        return new Token("ERROR", "Invalid input:" + currentChar + alphaBuffer, line, Token.ERROR);
                     }
 
                 case "==":
+
                     if (currentChar == '=') {
+
                         currentChar = read();
                         return new Token("isEqTo", "==", line, Token.ISEQUAL);
                     } else {
 
                         return new Token("ArEq", "=", line, Token.EQUAL);
                     }
-                //if !=
+
+                    //identifier - Body
+                case "P6":
+                    if ((isAlpha(currentChar) || isNumeric(currentChar) || currentChar == '_')) {
+
+                        alphaBuffer += currentChar;
+                        currentChar = read();
+
+                    } else {
+                        return new Token("Identifier", "" + alphaBuffer, line, Token.IDENTIFIER);
+                    }
+                    continue;
+
+                case "++":
+                    if (currentChar == '+') {
+                        currentChar = read();
+                        return new Token("Increment", "++", line, Token.INCREMENT);
+                    } else {
+                        return new Token("Addition", "+", line, Token.ADD);
+                    }
+                case "--":
+                    if (currentChar == '-') {
+                        currentChar = read();
+                        return new Token("Decrement", "--", line, Token.DECREMENT);
+                    } else {
+                        return new Token("Subtraction", "-", line, Token.SUBTRACT);
+                    }
+
+                    //if !=
                 case "!=":
                     if (currentChar == '=') {
                         currentChar = read();
@@ -648,7 +664,7 @@ public class LexicalAnalyzer {
                 case "string":
                     if (currentChar == '"') {
                         currentChar = read();
-                        return new Token("Word", "" + alphaBuffer + "", line, Token.STRING);
+                        return new Token("String", "" + alphaBuffer + "", line, Token.STRING);
                     } else if (currentChar == '\n' || currentChar == EOF) {
                         currentChar = read();
                         return new Token("ERROR", "Invalid word literal", line, Token.ERROR);
@@ -691,9 +707,9 @@ public class LexicalAnalyzer {
                     if (currentChar == '#') {
                         currentChar = read();
                         currentState = "LA";
-                        //return new Token("Comment",""+alphaBuffer+"", line, Token.COMMENT);
+                        //return new Token("Comment", "" + alphaBuffer + "", line, Token.COMMENT);
                     } else {
-                        alphaBuffer += currentChar;
+                       // alphaBuffer += currentChar;
                         currentChar = read();
                     }
                     continue;
