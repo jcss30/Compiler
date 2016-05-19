@@ -1,7 +1,10 @@
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.tree.DefaultMutableTreeNode;
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Play {
     public static void main(String[] args) {
@@ -12,7 +15,7 @@ public class Play {
         //  inFile = getFile();
 
 
-        parse(inFile);
+       parse(inFile);
 
 
         //scanner(inFile);
@@ -30,7 +33,7 @@ public class Play {
 
     public static void parse(String filename) {
         try {
-            Syntax jcss = new Syntax(filename);
+            SyntaxAnalyzer jcss = new SyntaxAnalyzer(filename);
             jcss.program();
             jcss.tree.createTree();
 
@@ -83,8 +86,8 @@ public class Play {
         chooser.setFileFilter(filter);
         //.
 
-        JFrame jude = new JFrame();
-        int returnVal = chooser.showOpenDialog(jude);
+        JFrame frame = new JFrame();
+        int returnVal = chooser.showOpenDialog(frame);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             inFile = chooser.getSelectedFile().getAbsolutePath();
         }
