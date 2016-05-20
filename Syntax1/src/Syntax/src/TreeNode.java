@@ -7,18 +7,20 @@ public class TreeNode extends Object {
     public DefaultMutableTreeNode node;
     protected String key;
     protected Token token;
-    protected TreeNode left, right;
+    protected  TreeNode                                                                                                                                                                                                                                                                                                                                                                                                                                         root;
+    //protected TreeNode left, right;
     protected JTree jtree = new JTree(node);
     protected ArrayList<TreeNode> children =  new ArrayList<>();
     protected int level;
 
     public TreeNode(Token token) {
         this.token = token;
+        this.key=token.getLexeme();
         node = new DefaultMutableTreeNode(token.getLexeme());
     }
     public TreeNode(String key){
-        this.key = key;
-        node = new DefaultMutableTreeNode(key);
+        this.key = key.toUpperCase();
+        node = new DefaultMutableTreeNode(this.key);
     }
 
     public TreeNode(Token token, Token[] tokens) {
@@ -34,18 +36,18 @@ public class TreeNode extends Object {
         TreeNode b= new TreeNode(new Token("LOL","B",1,1));
         TreeNode c= new TreeNode(new Token("LOL","C",1,1));
         TreeNode d= new TreeNode(new Token("LOL","D",1,1));
-        TreeNode x= new TreeNode("PLAY");
-        TreeNode gq = new TreeNode(new Token("PLAY","PLAY",1,1));
-        gq.addChildren(new TreeNode[]{a,b});
+        TreeNode x= new TreeNode("LOL");
+        TreeNode wew = new TreeNode(new Token("LOL","LOL",1,1));
+        wew.addChildren(new TreeNode[]{a,b});
         a.addChild(c);
         b.addChild(d);
         b.addChild(x);
 
-        gq.createTree();
+        wew.createTree();
 
-        System.out.println(gq.toString());
-        Tree treeviewer = new Tree(gq.jtree);
-        treeviewer.setVisible(true);
+        System.out.println(wew.toString());
+        TreeDisplay treeDisplay = new TreeDisplay(wew.jtree);
+        treeDisplay.setVisible(true);
 
 
 
@@ -95,23 +97,22 @@ public class TreeNode extends Object {
 
     //kuhain ang string ng createTree
     public String toString() {
-        String info="[";
+        String details="[";
         if(token!=null)
-
-            info+=token.getLexeme();
+            details+=token.getLexeme();
         else
-            info+=key;
+            details+=key;
 
         if(!children.isEmpty()){
             for (TreeNode treeNode : children) {
                 node.add(treeNode.node);
-                info+= treeNode.toString();
+                details += treeNode.toString();
             }
         } else {
             //details += "]";
         }
-        info += "]";
-        return info;
+        details += "]";
+        return details;
     }
 
     public void createTree() {
