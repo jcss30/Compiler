@@ -4,16 +4,19 @@ public class SymbolEntry {
     public int level;
 
     public String getId() {
+
         return id;
     }
 
     public void setId(String id) {
+
         this.id = id;
     }
 
     //mga attributes ng entry
     public String id;
     public String type;
+    public boolean isUsed = false;
     public Object value;
 
 
