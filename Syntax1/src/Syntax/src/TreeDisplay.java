@@ -1,6 +1,4 @@
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JTree;
+import javax.swing.*;
 
 public class TreeDisplay extends JFrame{
 
@@ -19,7 +17,7 @@ public class TreeDisplay extends JFrame{
 		
 		this.setTitle("Parse Tree");
 		this.setSize(400,400);
-		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		this.add(scrollPane);
 	}
